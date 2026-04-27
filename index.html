@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICDLE V1.0</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="game-container">
+
+        <header>
+            <h1>Wordle für ICD-10</h1>
+        </header>
+
+        <main id="clue-grid">
+            <div class="clue-slot locked" id="clue-0">Versteckter Hinweis 1</div>
+            <div class="clue-slot locked" id="clue-1">Versteckter Hinweis 2</div>
+            <div class="clue-slot locked" id="clue-2">Versteckter Hinweis 3</div>
+            <div class="clue-slot locked" id="clue-3">Versteckter Hinweis 4</div>
+            <div class="clue-slot locked" id="clue-4">Versteckter Hinweis 5</div>
+        </main>
+
+        <div id="guess-history" class="guess-history"></div>
+
+        <footer class="input-area">
+            <div class="search-wrapper">
+                <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+                <input type="text" id="search-input" placeholder="Diagnose suchen..." autocomplete="off">
+            </div>
+        </footer>
+    </div>
+
+    <div id="alert-box" class="alert hidden"></div>
+    <div id="overlay" class="overlay hidden"></div>
+</body>
+</html>

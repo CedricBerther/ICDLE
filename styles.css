@@ -1,0 +1,317 @@
+/* Grundlegendes Styling */
+:root {
+    --bg-color: #121213;
+    --card-bg: #1a1a1b;
+    --border-color: #3a3a3c;
+    --text-color: #ffffff;
+    --accent-green: #538d4e;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    /* ÄNDERUNG: min-height statt height, damit Scrollen möglich ist */
+    min-height: 100vh;
+    margin: 0;
+    /* ÄNDERUNG: Scrollen erlauben */
+    overflow-y: auto;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 700px;
+    /* ÄNDERUNG: Keine feste Höhe mehr, sondern Wachstum nach Inhalt */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ergänzung: Styling für die einzelnen Zeilen in der Liste */
+.suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    color: white;
+    background-color: var(--card-bg);
+}
+
+    .suggestion-item:hover {
+        background-color: #2a2a2b;
+    }
+
+.filled-guess-row {
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent-green);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+/* Header & Hinweise */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.clue-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stapelt Hinweise vertikal */
+    gap: 10px;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: left; /* Bessere Lesbarkeit bei langen Texten */
+    max-height: 250px; /* Optional: damit die Box nicht den ganzen Schirm füllt */
+    overflow-y: auto;
+}
+
+.clue-text-item {
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+    .clue-text-item:last-child {
+        border-bottom: none;
+        font-weight: bold; /* Der neuste Hinweis ist fett */
+        color: #ffd700; /* Goldene Farbe für den aktuellsten Hinweis */
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rate-Bereich */
+#clue-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.clue-slot {
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    transition: all 0.4s ease;
+}
+
+    .clue-slot.locked {
+        /* Ein dunkles Grau, etwas heller als der Hintergrund */
+        background-color: #1a1a1b;
+        /* Umrandung exakt wie beim search-input */
+        border: 2px solid var(--border-color);
+        /* Textfarbe in einem gedimmten Grau */
+        color: #565758;
+        text-align: center;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        /* Damit es exakt die gleiche Form hat wie das Suchfeld */
+        border-radius: 8px;
+        /* Ein ganz leichter Schatten nach innen für Tiefe */
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70px;
+        /* Sanfter Übergang, wenn der Hinweis freigeschaltet wird */
+        transition: all 0.3s ease;
+    }
+
+        .clue-slot.locked:hover {
+            background-color: #212123;
+            border-color: #4a4a4c;
+        }
+
+/* Zustand: Freigeschaltet */
+.clue-slot.revealed {
+    background-color: #2a2a2b;
+    border: 2px solid #538d4e;
+    color: white;
+    text-align: left;
+    font-style: normal;
+    animation: flipIn 0.5s ease-out;
+}
+
+.empty-guess-slot {
+    border: 2px dashed var(--border-color);
+    color: var(--border-color);
+    padding: 15px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+/* Suchfeld & Autocomplete */
+.input-area {
+   
+    padding-bottom: 50px; /* Platz am Ende der Seite */
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+#search-input {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+    #search-input:focus {
+        border-color: var(--accent-green);
+    }
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%; /* Erscheint direkt unter dem Input */
+    left: 0;
+    right: 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 8px 8px;
+    /* WICHTIG FÜR GROSSE LISTEN */
+    max-height: 280px; /* Begrenzt die Höhe auf ca. 7 Einträge */
+    overflow-y: auto; /* Aktiviert den vertikalen Scrollbalken */
+
+    display: none;
+    z-index: 9999; /* Stellt sicher, dass die Liste über allem schwebt */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #2a2a2b;
+    color: #ccc;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Verhindert Zeilenumbruch bei langen Namen */
+    overflow: hidden; /* Schneidet zu langen Text ab... */
+    text-overflow: ellipsis; /* ...und fügt "..." hinzu */
+}
+
+    .suggestion-item:hover {
+        background-color: #2a2a2b;
+        color: white;
+    }
+
+/* Bereich für die Liste der Tipps */
+.guess-history {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.history-item {
+    color: #787c7e;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-left: 3px solid #ba3a3a;
+    background-color: rgba(186, 58, 58, 0.05);
+}
+
+@keyframes flipIn {
+    from {
+        transform: rotateX(-90deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+.alert {
+    position: fixed;
+    /* Genau mittig platzieren */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Schickes Design */
+    background-color: var(--card-bg);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    border: 2px solid var(--accent-green);
+    /* Schatten für den Pop-up-Effekt */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(83, 141, 78, 0.2);
+    z-index: 10000; /* Ganz oben drüber */
+    text-align: center;
+    min-width: 320px;
+    max-width: 80%;
+    /* Animation beim Erscheinen */
+    animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+    .alert.hidden {
+        display: none;
+    }
+
+/* Die Animation lässt das Fenster kurz "aufhüpfen" */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px); /* Macht den Hintergrund leicht unscharf */
+    z-index: 9999;
+}
+
+    .overlay.hidden {
+        display: none;
+    }
