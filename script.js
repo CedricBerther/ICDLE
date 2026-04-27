@@ -1,5 +1,3 @@
-// 1. Die Datenbank der Diagnosen (Auszug)
-// Wichtig: "ss" statt "ß", Umlaute (ä, ö, ü) bleiben ausgeschrieben.
 const ICD10_LIST = [
     // F00-F09: Organische, einschliesslich symptomatischer psychischer Störungen
     "F00 Demenz bei Alzheimer-Krankheit",
@@ -866,134 +864,109 @@ const CLUES_DATABASE = {
         "Sie ist das unspezifischste Etikett innerhalb des Kapitels F der ICD-10."
     ]
 };
+
 // 2. Spiel-Variablen
 let targetDiagnosis = "";
-let currentStep = 0; // Welcher Hinweis ist gerade aktiv (0-4)
+let currentStep = 0;
 let isGameOver = false;
-let guessedDiagnoses = []; // Speichert alle bereits getippten Diagnosen
+let guessedDiagnoses = [];
+let isFreePlayMode = false;
 
 // 3. DOM-Elemente
 const searchInput = document.getElementById('search-input');
 const autocompleteList = document.getElementById('autocomplete-list');
 const alertBox = document.getElementById('alert-box');
+const overlay = document.getElementById('overlay');
+const titleElement = document.getElementById('game-title');
 
-// 4. Initialisierung: Wählt die heutige Diagnose
+// 4. Start-Logik
+document.getElementById('free-play-btn').addEventListener('click', () => {
+    isFreePlayMode = true;
+    initGame();
+});
+
 function initGame() {
-    // 1. Variablen komplett zurücksetzen
+    console.log("Initialisiere Spiel...");
     currentStep = 0;
     isGameOver = false;
-    guessedDiagnoses = []; // Die Liste der geratenen Diagnosen leeren
+    guessedDiagnoses = [];
 
-    // 2. Ziel-Diagnose für den Tag wählen
-    const now = new Date();
-    const dateSeed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
-    const dailyIndex = dateSeed % ICD10_LIST.length;
-    targetDiagnosis = ICD10_LIST[dailyIndex];
+    // Modus-Wahl
+    if (isFreePlayMode) {
+        const randomIndex = Math.floor(Math.random() * ICD10_LIST.length);
+        targetDiagnosis = ICD10_LIST[randomIndex];
+        if (titleElement) titleElement.textContent = "Wordle für ICD-10 - Freies Spiel";
+    } else {
+        const now = new Date();
+        const dateSeed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
+        const dailyIndex = dateSeed % ICD10_LIST.length;
+        targetDiagnosis = ICD10_LIST[dailyIndex];
+        if (titleElement) titleElement.textContent = "Wordle für ICD-10";
+    }
 
-    // 3. UI Elemente zurücksetzen
-    // Suchfeld wieder aktivieren
-    searchInput.disabled = false;
-    searchInput.value = '';
-
-    // Pop-up und Overlay verstecken
-    alertBox.classList.add('hidden');
-    const overlay = document.getElementById('overlay');
-    if (overlay) overlay.classList.add('hidden');
-
-    // Historie leeren
+    // UI Reset
+    resetClueSlots();
     document.getElementById('guess-history').innerHTML = '';
 
-    // 4. Clue-Slots visuell zurücksetzen
-    resetClueSlots();
+    if (searchInput) {
+        searchInput.disabled = false;
+        searchInput.value = '';
+    }
 
-    // 5. Erst JETZT den ersten Hinweis anzeigen
+    if (alertBox) alertBox.classList.add('hidden');
+    if (overlay) overlay.classList.add('hidden');
+
+    // Den ersten Hinweis sofort aufdecken
     revealNextClue();
-
-    // Debug Anzeige (optional)
-    if (debugSolution) {
-        debugSolution.textContent = "Test-Modus (Lösung): " + targetDiagnosis;
-    }
 }
 
-// 5. Autocomplete Logik
-searchInput.addEventListener('input', () => {
-    if (isGameOver) return;
+// 5. Autocomplete-Logik
+if (searchInput) {
+    searchInput.addEventListener('input', () => {
+        console.log("Eingabe erkannt:", searchInput.value);
+        if (isGameOver) return;
 
-    const query = searchInput.value.toLowerCase().trim();
-    autocompleteList.innerHTML = '';
+        const query = searchInput.value.toLowerCase().trim();
+        autocompleteList.innerHTML = '';
 
-    if (query.length < 1) {
-        autocompleteList.style.display = 'none';
-        return;
-    }
-
-    const queryParts = query.split(/\s+/);
-
-    // FILTER-ANPASSUNG HIER:
-    const matches = ICD10_LIST.filter(item => {
-        const itemLower = item.toLowerCase();
-
-        // Prüfen, ob die Diagnose bereits geraten wurde
-        const alreadyGuessed = guessedDiagnoses.includes(item);
-
-        // Nur anzeigen, wenn NICHT bereits geraten UND Suchbegriff passt
-        return !alreadyGuessed && queryParts.every(part => itemLower.includes(part));
-    }).slice(0, 50);
-
-    // ... Rest des Codes zum Anzeigen der Liste bleibt gleich
-    if (matches.length > 0) {
-        autocompleteList.style.display = 'block';
-        matches.forEach(match => {
-            const div = document.createElement('div');
-            div.classList.add('suggestion-item');
-            div.textContent = match;
-            div.addEventListener('click', () => submitGuess(match));
-            autocompleteList.appendChild(div);
-        });
-    } else {
-        autocompleteList.style.display = 'none';
-    }
-});
-
-// Tastaturunterstützung (Enter wählt den ersten Vorschlag)
-searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const first = autocompleteList.querySelector('.suggestion-item');
-        if (first) first.click();
-    }
-});
-
-// 6. Spiel-Logik
-function revealNextClue() {
-    const clues = CLUES_DATABASE[targetDiagnosis];
-    const slot = document.getElementById(`clue-${currentStep}`);
-
-    if (slot) {
-        if (clues && clues[currentStep]) {
-            slot.textContent = clues[currentStep];
-        } else {
-            slot.textContent = "Hinweis: Keine Daten in Datenbank für diese Diagnose.";
+        if (query.length < 1) {
+            autocompleteList.style.display = 'none';
+            return;
         }
-        slot.classList.remove('locked');
-        slot.classList.add('revealed');
-        scrollToBottom();
-    }
+
+        const queryParts = query.split(/\s+/);
+        const matches = ICD10_LIST.filter(item => {
+            const itemLower = item.toLowerCase();
+            const alreadyGuessed = guessedDiagnoses.includes(item);
+            return !alreadyGuessed && queryParts.every(part => itemLower.includes(part));
+        }).slice(0, 50);
+
+        if (matches.length > 0) {
+            autocompleteList.style.display = 'block';
+            matches.forEach(match => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.textContent = match;
+                div.addEventListener('click', () => submitGuess(match));
+                autocompleteList.appendChild(div);
+            });
+        } else {
+            autocompleteList.style.display = 'none';
+        }
+    });
 }
 
+// 6. Spiel-Ablauf
 function submitGuess(diagnosis) {
     if (isGameOver) return;
 
-    // Diagnose zur Liste der getätigten Tipps hinzufügen
     guessedDiagnoses.push(diagnosis);
-
-    // Tipp zur Historie hinzufügen (UI)
     const history = document.getElementById('guess-history');
     const item = document.createElement('div');
     item.className = 'history-item';
     item.textContent = "Tipp: " + diagnosis;
     history.appendChild(item);
 
-    // ... Rest deiner Gewinn/Verlust Logik
     if (diagnosis === targetDiagnosis) {
         revealAllClues();
         finishGame(true);
@@ -1008,34 +981,62 @@ function submitGuess(diagnosis) {
 
     searchInput.value = '';
     autocompleteList.style.display = 'none';
-    scrollToBottom();
+    setTimeout(scrollToBottom, 50);
 }
+
+function revealNextClue() {
+    const cleanTarget = targetDiagnosis.trim();
+    const dbKey = Object.keys(CLUES_DATABASE).find(key => key.trim() === cleanTarget);
+    const clues = CLUES_DATABASE[dbKey];
+    const slot = document.getElementById(`clue-${currentStep}`);
+
+    if (slot) {
+        slot.textContent = (clues && clues[currentStep]) ? clues[currentStep] : "Keine Falldaten fuer: " + targetDiagnosis;
+        slot.classList.remove('locked');
+        slot.classList.add('revealed');
+    }
+}
+
 function finishGame(win) {
     isGameOver = true;
     searchInput.disabled = true;
-
-    const overlay = document.getElementById('overlay');
-
     alertBox.classList.remove('hidden');
-    if (overlay) overlay.classList.remove('hidden'); // Overlay einblenden
+    if (overlay) overlay.classList.remove('hidden');
 
-    if (win) {
-        alertBox.innerHTML = `<h2>Richtig gelöst! 🎉</h2><p style="margin-top:10px">Du hast die Diagnose <strong>${targetDiagnosis}</strong> gefunden.</p>`;
-        alertBox.style.borderColor = "#538d4e";
-    } else {
-        alertBox.innerHTML = `<h2>Schade!</h2><p style="margin-top:10px">Die korrekte Lösung war:<br><strong>${targetDiagnosis}</strong></p>`;
-        alertBox.style.borderColor = "#ba3a3a";
+    // Grund-Text festlegen
+    let message = win
+        ? `<h2>Richtig gelöst! 🎉</h2><p>Lösung: <strong>${targetDiagnosis}</strong></p>`
+        : `<h2>Schade!</h2><p>Die Lösung war: <strong>${targetDiagnosis}</strong></p>`;
+
+    // Falls wir im freien Modus sind, fügen wir den "Nochmal spielen"-Button hinzu
+    if (isFreePlayMode) {
+        message += `<button id="restart-game-btn" class="primary-btn" style="margin-top: 20px;">Nächstes freies Spiel</button>`;
+    }
+
+    alertBox.innerHTML = message;
+    alertBox.style.borderColor = win ? "#538d4e" : "#ba3a3a";
+
+    // Event-Listener für den neuen Button (nur wenn er existiert)
+    const restartBtn = document.getElementById('restart-game-btn');
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            initGame(); // Startet sofort eine neue Runde
+        });
     }
 }
 
 // Hilfsfunktionen
 function revealAllClues() {
-    const clues = CLUES_DATABASE[targetDiagnosis];
+    const cleanTarget = targetDiagnosis.trim();
+    const dbKey = Object.keys(CLUES_DATABASE).find(key => key.trim() === cleanTarget);
+    const clues = CLUES_DATABASE[dbKey];
     for (let i = 0; i < 5; i++) {
         const slot = document.getElementById(`clue-${i}`);
-        if (clues && clues[i]) slot.textContent = clues[i];
-        slot.classList.remove('locked');
-        slot.classList.add('revealed');
+        if (slot && clues && clues[i]) slot.textContent = clues[i];
+        if (slot) {
+            slot.classList.remove('locked');
+            slot.classList.add('revealed');
+        }
     }
 }
 
@@ -1044,28 +1045,19 @@ function resetClueSlots() {
         const slot = document.getElementById(`clue-${i}`);
         if (slot) {
             slot.textContent = `Versteckter Hinweis ${i + 1}`;
-            // WICHTIG: Alte Klassen entfernen, 'locked' hinzufügen
             slot.classList.remove('revealed');
             slot.classList.add('locked');
-            // Style-Reste entfernen (falls vorhanden)
-            slot.style.backgroundColor = "";
         }
     }
 }
 
 function scrollToBottom() {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 
-// Schliesst Liste beim Klick irgendwohin
 document.addEventListener('click', (e) => {
-    if (e.target !== searchInput) {
-        autocompleteList.style.display = 'none';
-    }
+    if (e.target !== searchInput) autocompleteList.style.display = 'none';
 });
 
-// START
+// Start
 initGame();
