@@ -181,10 +181,8 @@ h1 {
 }
 
 .search-wrapper {
-    position: relative;
-    width: 100%;
+    position: relative; /* Basis für die absolute Position der Liste */
 }
-
 #search-input {
     width: 100%;
     padding: 15px;
@@ -203,19 +201,17 @@ h1 {
 
 .autocomplete-suggestions {
     position: absolute;
-    top: 100%; /* Erscheint direkt unter dem Input */
+    top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 0 0 8px 8px;
-    /* WICHTIG FÜR GROSSE LISTEN */
-    max-height: 280px; /* Begrenzt die Höhe auf ca. 7 Einträge */
-    overflow-y: auto; /* Aktiviert den vertikalen Scrollbalken */
-
-    display: none;
-    z-index: 9999; /* Stellt sicher, dass die Liste über allem schwebt */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    background-color: #1a1a1b; /* Gleiche Farbe wie dein Suchfeld */
+    /* WICHTIG: Muss hoeher sein als alles andere auf der Seite */
+    z-index: 99999;
+    display: none; /* Wird per JS auf 'block' gesetzt */
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--border-color);
+    border-top: none;
 }
 
 .suggestion-item {
@@ -314,4 +310,65 @@ h1 {
 
     .overlay.hidden {
         display: none;
+    }
+
+.secondary-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+    .secondary-btn:hover {
+        border-color: var(--accent-green);
+        background-color: #2a2a2b;
+    }
+
+/* Für mobile Geräte, damit der Button nicht über dem Titel hängt */
+@media (max-width: 650px) {
+    .secondary-btn {
+        position: static;
+        margin-bottom: 15px;
+        width: fit-content;
+        align-self: center;
+    }
+
+    .game-container {
+        /* WICHTIG: Muss auf visible stehen, damit das Dropdown "rausschauen" kann */
+        overflow: visible;
+        position: relative;
+    }
+}
+
+
+/* Button innerhalb der Alert-Box */
+.primary-btn {
+    background-color: var(--accent-green);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    width: 100%; /* Nimmt die volle Breite des Pop-ups ein */
+}
+
+    .primary-btn:hover {
+        background-color: #43733f;
+        transform: scale(1.02);
+    }
+
+    .primary-btn:active {
+        transform: scale(0.98);
     }
