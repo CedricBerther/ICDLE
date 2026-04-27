@@ -1,4 +1,4 @@
-const targetWords = ["george", "guertel", "guesel", "goebels", "garte"];
+const targetWords = ["george", "guertel", "guesel", "goebels", "garte", "johnny", "gurt", "guerteltier"];
 
 // 1. Dynamische Längen & Wort-Auswahl
 const MAX_LENGTH = Math.max(...targetWords.map(word => word.length));
