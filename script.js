@@ -465,11 +465,11 @@ const CLUES_DATABASE = {
         "Die Lebensqualität ist durch die ständige Anspannung und die Erwartungsangst massiv gemindert."
     ],
     "F41.2 Angst und depressive Störung, gemischt": [
-        "Ein Patient klagt über eine Mischung aus Zukunftsängsten, innerer Unruhe und einer gedrückten Stimmung. Er fühlt sich oft erschöpft und gleichzeitig nervös.",
-        "Keine der beiden Symptomgruppen (Angst oder Depression) ist für sich allein genommen schwer genug für eine Einzeldiagnose.",
-        "Es treten sowohl vegetative Symptome der Angst als auch der typische Interessenverlust der Depression auf.",
-        "Die Diagnose wird oft primär in der hausärztlichen Versorgung gestellt, wenn das Bild uneinheitlich ist.",
-        "Es muss ein deutlicher Leidensdruck bestehen, der die Funktionsfähigkeit im Alltag beeinträchtigt."
+        "Der Patient beschreibt einen Zustand der „Zerrissenheit“: Er fühlt sich gleichzeitig getrieben und nervös, aber auch antriebslos und emotional leer. Es ist ein klinisches Bild, das sich nicht klar einem einzelnen Pol zuordnen lässt.",
+        "Das Besondere hier ist: Würde man die Symptome aufteilen, würde keine der beiden vorliegenden Störungsbilder die nötige Schwere oder Anzahl an Kriterien erfüllen, um als eigenständige Diagnose durchzugehen.",
+        "Es zeigt sich ein „Mischbild“ aus vegetativen Beschwerden (wie Herzklopfen oder Zittern) und klassischen Anhedonien (Freudlosigkeit und Interessenverlust).",
+        "Diese Codierung wird besonders häufig in der Primärversorgung (Hausarztpraxis) genutzt, da Patienten dort oft mit diffusen, unspezifischen psychischen Beschwerden vorstellig werden, die genau zwischen zwei Kategorien fallen.",
+        "Sind die depressiven Symptome schwerwiegend genug für eine depressive Episode, hat diese Diagnose Vorrang. Bestehen beide Störungsbilder voll ausgeprägt nebeneinander, wird ebenfalls anders codiert. Diese Diagnose ist das „Auffangbecken“ für das gleichzeitige, aber unterschwellige Vorhandensein beider Welten."
     ],
     "F42 Zwangsstörung": [
         "Ein Mann muss jeden Abend kontrollieren, ob der Herd ausgeschaltet ist, und zwar genau 20 Mal hintereinander. Wenn er es nicht tut, überkommt ihn eine unerträgliche Angst.",
