@@ -895,7 +895,7 @@ function initGame() {
     if (isFreePlayMode) {
         const randomIndex = Math.floor(Math.random() * ICD10_LIST.length);
         targetDiagnosis = ICD10_LIST[randomIndex];
-        if (titleElement) titleElement.textContent = "Wordle für ICD-10 - Freies Spiel";
+        if (titleElement) titleElement.textContent = "Wordle für ICD-10 - Frei";
     } else {
         const now = new Date();
         const dateSeed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
