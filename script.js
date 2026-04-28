@@ -785,7 +785,7 @@ const CLUES_DATABASE = {
         "Dazu gehören in dieser Kategorie auch das Einkoten (Enkopresis), Stottern, Poltern oder Fütterstörungen im Kleinkindalter.",
         "Die Verhaltensauffälligkeiten müssen für das jeweilige Entwicklungsalter des Kindes absolut unangemessen sein.",
         "Häufig besteht ein zeitlicher Zusammenhang mit psychischen Belastungen, wie zum Beispiel der Einschulung oder familiären Krisen."
-    ]
+    ],
     "F99 Psychische Störung ohne nähere Angabe": [
         "Ein 40-jähriger Patient zeigt deutliche Anzeichen einer psychischen Erkrankung, aber eine genauere Einordnung ist derzeit nicht möglich.",
         "Diese Diagnose ist ein Platzhalter für Fälle, in denen die Symptome keiner anderen F-Diagnose zugeordnet werden können.",
