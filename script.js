@@ -170,21 +170,21 @@ const CLUES_DATABASE = {
         "Die Ursache ist meist ein somatischer Faktor wie ein Harnwegsinfekt, Exsikkose oder eine postoperative Stoffwechselstörung.",
         "Nach Behandlung der körperlichen Ursache bildet sich die Symptomatik meist innerhalb von Tagen zurück."
     ],
-    "F06 Andere psychische Störungen aufgrund einer Schädigung des Gehirns oder einer körperlichen Krankheit": [
+    "F06 Andere psychische Störungen aufgrund einer Schädigung oder Funktionsstörung des Gehirns oder einer körperlichen Krankheit": [
         "Ein 48-jähriger Patient leidet unter starken Stimmungsschwankungen und Antriebslosigkeit, die zeitgleich mit einer schweren endokrinen Erkrankung auftraten.",
         "Eine primäre depressive Episode wird ausgeschlossen, da die psychische Symptomatik direkt an den Verlauf der körperlichen Krankheit gekoppelt ist.",
         "Dazu gehören Zustände wie die organische Halluzinose, die organische katatone Störung oder die organische Angststörung.",
         "Die psychischen Symptome sind die direkte physiologische Folge einer zerebralen Funktionsstörung oder einer systemischen Krankheit.",
         "Die Diagnose erfordert den Nachweis einer kausalen Verbindung zwischen der körperlichen Diagnose und der psychischen Manifestation."
     ],
-    "F07 Persönlichkeits- und Verhaltensstörungen aufgrund einer Krankheit oder Schädigung des Gehirns": [
+    "FF07 Persönlichkeits- und Verhaltensstörungen aufgrund einer Krankheit, Schädigung oder Funktionsstörung des Gehirns": [
         "Nach einem schweren Unfall zeigt ein früher 35-jähriger besonnener Mann plötzlich eine ausgeprägte Impulsivität und Distanzlosigkeit.",
         "Es handelt sich nicht um eine vorbestehende Persönlichkeitsstörung, da das Verhalten vor dem Ereignis völlig unauffällig war.",
         "Charakteristisch sind eine emotionale Labilität, mangelnde Affektkontrolle und eine Veränderung der sozialen Urteilsfähigkeit.",
         "Die kognitiven Fähigkeiten können erhalten sein, aber die Fähigkeit zur sozialen Steuerung ist massiv beeinträchtigt.",
         "Das klinische Bild wird oft als 'Frontalhirnsyndrom' bezeichnet, wenn die Läsion die präfrontalen Areale betrifft."
     ],
-    "F09 Nicht näher bezeichnete organische psychische Störung": [
+    "F09 Nicht näher bezeichnete organische oder symptomatische psychische Störung": [
         "Eine 50-jährige Patientin zeigt diffuse psychische Symptome, bei denen ein Zusammenhang mit einer körperlichen Erkrankung sicher ist.",
         "Andere organische Syndrome wie Delir oder Amnesie passen nicht exakt auf das komplexe Beschwerdebild.",
         "Die Diagnose wird vergeben, wenn die organische Genese sicher ist, aber die klinischen Merkmale uneinheitlich sind.",
@@ -422,7 +422,7 @@ const CLUES_DATABASE = {
         "Die Betroffene unternimmt grosse Anstrengungen, um dem spezifischen Reiz aus dem Weg zu gehen.",
         "Andere psychische Symptome wie Wahn oder generalisierte Angst liegen nicht vor."
     ],
-    "F41.0 Panikstörung": [
+    "F41.0 Panikstörung (episodisch paroxysmale Angst)": [
         "Ein 29-jähriger Patient erlebt plötzlich auftretende Anfälle von Todesangst mit heftigem Herzklopfen aus heiterem Himmel.",
         "Kardiologische Untersuchungen haben keine organische Ursache für das Herzrasen ergeben.",
         "Die Attacken dauern meist nur einige Minuten, hinterlassen aber eine ausgeprägte 'Angst vor der Angst'.",
@@ -471,7 +471,7 @@ const CLUES_DATABASE = {
         "Die Beeinträchtigung beginnt meist innerhalb eines Monats nach dem belastenden Ereignis.",
         "Die Störung dauert in der Regel nicht länger als sechs Monate nach Ende der Belastung an."
     ],
-    "F44 Dissoziative Störungen": [
+    "F44 Dissoziative Störungen (Konversionsstörungen)": [
         "Eine 24-jährige Frau kann plötzlich ihre Beine nicht mehr bewegen, obwohl neurologisch alles völlig intakt ist.",
         "Es besteht ein zeitlicher Zusammenhang zwischen psychischer Belastung und dem körperlichen Funktionsausfall.",
         "Dazu gehören auch Phänomene wie dissoziative Amnesie oder dissoziativer Stupor.",
@@ -485,7 +485,7 @@ const CLUES_DATABASE = {
         "Psychische Faktoren werden vom Patienten als Ursache meist kategorisch abgelehnt.",
         "Die ständige Beschäftigung mit den Symptomen führt zu einer massiven Beeinträchtigung des sozialen Lebens."
     ],
-    "F48 Andere neurotische Störungen": [
+    "F48 Andere neurotische Störungen (z.B. Neurasthenie)": [
         "Ein 40-jähriger Angestellter fühlt sich nach geringster geistiger Anstrengung völlig erschöpft und klagt über Konzentrationsschwäche.",
         "Es bestehen häufig begleitende Symptome wie Spannungskopfschmerz und Schwindelgefühle.",
         "Die Kriterien für eine Depression oder Angststörung werden nicht voll erfüllt.",
@@ -779,7 +779,7 @@ const CLUES_DATABASE = {
         "Die Symptome verstärken sich oft unter Stress und können kurzzeitig unterdrückt werden.",
         "Die Diagnose wird gestellt, wenn die Tics über einen Zeitraum von mindestens vier Wochen auftreten."
     ],
-    "F98 Andere Verhaltens- und emotionale Störungen (Enuresis / Enkopresis)": [
+    "F98 Andere Verhaltens- und emotionale Störungen mit Beginn in der Kindheit und Jugend (Enuresis / Enkopresis)": [
         "Ein 6-jähriges Kind nässt fast jede Nacht das Bett ein, obwohl es zuvor bereits über ein Jahr lang zuverlässig trocken war.",
         "Körperliche Ursachen wie Fehlbildungen der Harnwege wurden vom Kinderarzt sicher ausgeschlossen.",
         "Dazu gehören in dieser Kategorie auch das Einkoten (Enkopresis), Stottern, Poltern oder Fütterstörungen im Kleinkindalter.",
