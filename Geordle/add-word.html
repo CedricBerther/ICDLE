@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geordle - Wörter vorschlagen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1 class="game-title">Vorschläge</h1>
+        </header>
+
+        <div class="input-area">
+            <input type="text" id="new-word-input" placeholder="Neues Wort..." maxlength="15">
+            <button id="add-btn" class="submit-word-btn">Hinzufügen</button>
+        </div>
+
+        <div class="list-section">
+            <span id="word-count">Wörter werden geladen...</span>
+            <ul id="word-list">
+            </ul>
+        </div>
+
+        <a href="index.html" class="add-word-btn" style="position: relative; left: 0; margin-top: 40px; display: inline-block;">← Zurück</a>
+    </div>
+
+    <script type="module" src="add-word.js"></script>
+</body>
+</html>
