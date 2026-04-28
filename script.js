@@ -1,5 +1,4 @@
 const ICD10_LIST = [
-    // F00-F09: Organische, einschliesslich symptomatischer psychischer Störungen
     "F00 Demenz bei Alzheimer-Krankheit",
     "F01 Vaskuläre Demenz",
     "F02 Demenz bei anderenorts klassifizierten Krankheiten",
@@ -9,8 +8,6 @@ const ICD10_LIST = [
     "F06 Andere psychische Störungen aufgrund einer Schädigung oder Funktionsstörung des Gehirns oder einer körperlichen Krankheit",
     "F07 Persönlichkeits- und Verhaltensstörungen aufgrund einer Krankheit, Schädigung oder Funktionsstörung des Gehirns",
     "F09 Nicht näher bezeichnete organische oder symptomatische psychische Störung",
-
-    // F10-F19: Psychische und Verhaltensstörungen durch psychotrope Substanzen
     "F10 Psychische und Verhaltensstörungen durch Alkohol",
     "F11 Psychische und Verhaltensstörungen durch Opioide",
     "F12 Psychische und Verhaltensstörungen durch Cannabinoide",
@@ -21,8 +18,6 @@ const ICD10_LIST = [
     "F17 Psychische und Verhaltensstörungen durch Tabak",
     "F18 Psychische und Verhaltensstörungen durch flüchtige Lösungsmittel",
     "F19 Psychische und Verhaltensstörungen durch multiplen Substanzgebrauch und Konsum anderer psychotroper Substanzen",
-
-    // F20-F29: Schizophrenie, schizotype und wahnhafte Störungen
     "F20.0 Paranoide Schizophrenie",
     "F20.1 Hebephrene Schizophrenie",
     "F20.2 Katatone Schizophrenie",
@@ -37,8 +32,6 @@ const ICD10_LIST = [
     "F25 Schizoaffektive Störungen",
     "F28 Sonstige nichtorganische psychotische Störungen",
     "F29 Nicht näher bezeichnete nichtorganische Psychose",
-
-    // F30-F39: Affektive Störungen
     "F30 Manische Episode",
     "F31 Bipolare affektive Störung",
     "F32.0 Leichte depressive Episode",
@@ -49,8 +42,6 @@ const ICD10_LIST = [
     "F34 Anhaltende affektive Störungen (Dysthymia / Zyklothymia)",
     "F38 Sonstige affektive Störungen",
     "F39 Nicht näher bezeichnete affektive Störung",
-
-    // F40-F48: Neurotische, Belastungs- und somatoforme Störungen
     "F40.0 Agoraphobie",
     "F40.1 Soziale Phobien",
     "F40.2 Spezifische Phobien",
@@ -64,8 +55,6 @@ const ICD10_LIST = [
     "F44 Dissoziative Störungen (Konversionsstörungen)",
     "F45 Somatoforme Störungen",
     "F48 Andere neurotische Störungen (z.B. Neurasthenie)",
-
-    // F50-F59: Verhaltensauffälligkeiten mit körperlichen Störungen und Faktoren
     "F50.0 Anorexia nervosa",
     "F50.2 Bulimia nervosa",
     "F50.4 Essattacken bei anderen psychischen Störungen",
@@ -75,8 +64,6 @@ const ICD10_LIST = [
     "F54 Psychologische Faktoren oder Verhaltensfaktoren bei anderenorts klassifizierten Krankheiten",
     "F55 Missbrauch von nichtabhängigkeitserzeugenden Substanzen",
     "F59 Nicht näher bezeichnete Verhaltensauffälligkeiten bei körperlichen Störungen und Faktoren",
-
-    // F60-F69: Persönlichkeits- und Verhaltensstörungen
     "F60.0 Paranoide Persönlichkeitsstörung",
     "F60.1 Schizoide Persönlichkeitsstörung",
     "F60.2 Dissoziale Persönlichkeitsstörung",
@@ -92,8 +79,6 @@ const ICD10_LIST = [
     "F65 Störungen der Sexualpräferenz",
     "F66 Psychische und Verhaltensstörungen im Zusammenhang mit der sexuellen Entwicklung und Orientierung",
     "F68 Andere Persönlichkeits- und Verhaltensstörungen",
-
-    // F70-F79: Intelligenzminderung
     "F70 Leichte Intelligenzminderung",
     "F71 Mittelgradige Intelligenzminderung",
     "F72 Schwere Intelligenzminderung",
@@ -101,8 +86,6 @@ const ICD10_LIST = [
     "F74 Dissoziative Störungen der Intelligenz",
     "F78 Andere Intelligenzminderung",
     "F79 Nicht näher bezeichnete Intelligenzminderung",
-
-    // F80-F89: Entwicklungsstörungen
     "F80 Umschriebene Entwicklungsstörungen des Sprechens und der Sprache",
     "F81 Umschriebene Entwicklungsstörungen schulischer Fertigkeiten (Lese-Rechtschreibstörung / Rechenstörung)",
     "F82 Umschriebene Entwicklungsstörung der motorischen Funktionen",
@@ -113,8 +96,6 @@ const ICD10_LIST = [
     "F84.5 Asperger-Syndrom",
     "F88 Andere Entwicklungsstörungen",
     "F89 Nicht näher bezeichnete Entwicklungsstörung",
-
-    // F90-F98: Verhaltens- und emotionale Störungen mit Beginn in der Kindheit und Jugend
     "F90 Hyperkinetische Störungen (ADHS)",
     "F91 Störungen des Sozialverhaltens",
     "F92 Kombinierte Störung des Sozialverhaltens und der Emotionen",
@@ -122,8 +103,6 @@ const ICD10_LIST = [
     "F94 Störungen sozialer Funktionen mit Beginn in der Kindheit und Jugend",
     "F95 Ticstörungen",
     "F98 Andere Verhaltens- und emotionale Störungen mit Beginn in der Kindheit und Jugend (Enuresis / Enkopresis)",
-
-    // F99: Nicht näher bezeichnete psychische Störungen
     "F99 Psychische Störung ohne nähere Angabe"
 ];
 
@@ -177,7 +156,7 @@ const CLUES_DATABASE = {
         "Die psychischen Symptome sind die direkte physiologische Folge einer zerebralen Funktionsstörung oder einer systemischen Krankheit.",
         "Die Diagnose erfordert den Nachweis einer kausalen Verbindung zwischen der körperlichen Diagnose und der psychischen Manifestation."
     ],
-    "FF07 Persönlichkeits- und Verhaltensstörungen aufgrund einer Krankheit, Schädigung oder Funktionsstörung des Gehirns": [
+    "F07 Persönlichkeits- und Verhaltensstörungen aufgrund einer Krankheit, Schädigung oder Funktionsstörung des Gehirns": [
         "Nach einem schweren Unfall zeigt ein früher 35-jähriger besonnener Mann plötzlich eine ausgeprägte Impulsivität und Distanzlosigkeit.",
         "Es handelt sich nicht um eine vorbestehende Persönlichkeitsstörung, da das Verhalten vor dem Ereignis völlig unauffällig war.",
         "Charakteristisch sind eine emotionale Labilität, mangelnde Affektkontrolle und eine Veränderung der sozialen Urteilsfähigkeit.",
@@ -244,7 +223,7 @@ const CLUES_DATABASE = {
         "Ein 48-jähriger Patient möchte aufhören, scheitert aber wiederholt an starker Reizbarkeit und Konzentrationsstörungen.",
         "Andere psychische Ursachen für die Unruhe liegen nicht vor, die Symptome bessern sich sofort nach dem Rauchen einer Zigarette.",
         "Es besteht ein klarer zwanghafter Drang zum Konsum von Nikotin trotz bekannter gesundheitlicher Risiken.",
-        "Die Toleranzentwicklung zeigt sich darin, dass die Menge der konsumierten Zigaretten über die Jahre stetig zugenommen hat.",
+        "Die Toleranzentwicklung zeigt sich darin, dass die Menge der konsumierten Zigaretten über die Jahre stetig zugenummmen hat.",
         "Die Diagnose wird meist im Rahmen von Entwöhnungsprogrammen relevant, wenn das Abhängigkeitssyndrom klinisch manifest ist."
     ],
     "F18 Psychische und Verhaltensstörungen durch flüchtige Lösungsmittel": [
@@ -452,7 +431,7 @@ const CLUES_DATABASE = {
     ],
     "F43.0 Akute Belastungsreaktion": [
         "Unmittelbar nach einem schweren Unfall wirkt ein 30-jähriger Beteiligter wie betäubt und starrt ins Leere.",
-        "Kurz darauf wechselt der Zustand in eine Phase von Unruhe, Zittern und Herzrasen.",
+        "Kurz darauf wechselt der Zustand in eine mussive Phase von Unruhe, Zittern und Herzrasen.",
         "Die Symptome treten innerhalb von Minuten nach dem traumatischen Ereignis auf.",
         "Der Zustand klingt normalerweise innerhalb von Stunden oder spätestens nach zwei bis drei Tagen wieder ab.",
         "Es handelt sich um eine Reaktion auf ein aussergewöhnlich belastendes Ereignis bei einer sonst gesunden Person."
@@ -681,14 +660,14 @@ const CLUES_DATABASE = {
         "Die Schwere der Minderung lässt sich dadurch nicht exakt in die Kategorien F70-F73 einordnen.",
         "Dennoch ist eine spezifische Förderung und intensive Betreuung aufgrund der Defizite zwingend erforderlich."
     ],
-    "F80 Umschriebene Entwicklungsstörungen des Sprechens": [
+    "F80 Umschriebene Entwicklungsstörungen des Sprechens und der Sprache": [
         "Ein 4-jähriger Junge spricht deutlich weniger Worte als seine Gleichaltrigen. Sein Hörvermögen ist jedoch völlig normal.",
         "Es handelt sich nicht um eine Folge von Vernachlässigung oder einer neurologischen Erkrankung.",
         "Die Störung betrifft entweder das Sprachverständnis oder die Artikulation von Lauten.",
         "Die Defizite sind nicht durch eine Intelligenzminderung erklärbar.",
         "Frühzeitige Logopädie ist die wichtigste therapeutische Massnahme bei dieser Diagnose."
     ],
-    "F81 Entwicklungsstörungen schulischer Fertigkeiten": [
+    "F81 Umschriebene Entwicklungsstörungen schulischer Fertigkeiten (Lese-Rechtschreibstörung / Rechenstörung)": [
         "Ein intelligentes 8-jähriges Mädchen hat extreme Schwierigkeiten, einfache Wörter flüssig zu lesen oder fehlerfrei zu schreiben.",
         "Es liegt keine Seh- oder Hörstörung vor, die die Probleme beim Lernen erklären könnte.",
         "Die Leistungen liegen deutlich unter dem Niveau, das aufgrund des IQs zu erwarten wäre.",
@@ -765,7 +744,7 @@ const CLUES_DATABASE = {
         "Die Angst bezieht sich auf spezifisch kindliche Entwicklungsthemen und ist nicht so generalisiert wie bei Erwachsenen.",
         "Die Störung behindert die normale soziale Entwicklung und muss meist vor dem sechsten Lebensjahr begonnen haben."
     ],
-    "F94 Störungen sozialer Funktionen mit Beginn in der Kindheit": [
+    "F94 Störungen sozialer Funktionen mit Beginn in der Kindheit und Jugend": [
         "Ein 5-jähriges Kind spricht zu Hause fliessend, verharrt aber im Kindergarten in absolutem, beharrlichem Schweigen.",
         "Dazu gehört auch die reaktive Bindungsstörung infolge von schwerer Vernachlässigung, Misshandlung oder häufigem Wechsel der Bezugspersonen.",
         "Die Störung zeigt sich primär in der Art und Weise, wie das Kind soziale Beziehungen zu Erwachsenen oder Gleichaltrigen gestaltet.",
@@ -795,6 +774,9 @@ const CLUES_DATABASE = {
     ]
 };
 
+// 1. KORREKTUR DER SPIEL-LOGIK: Nur Diagnosen mit Hinweisen zulassen
+const VALID_DIAGNOSES = ICD10_LIST.filter(d => CLUES_DATABASE[d.trim()]);
+
 // 2. Spiel-Variablen
 let targetDiagnosis = "";
 let currentStep = 0;
@@ -823,14 +805,14 @@ function initGame() {
 
     // Modus-Wahl
     if (isFreePlayMode) {
-        const randomIndex = Math.floor(Math.random() * ICD10_LIST.length);
-        targetDiagnosis = ICD10_LIST[randomIndex];
+        const randomIndex = Math.floor(Math.random() * VALID_DIAGNOSES.length);
+        targetDiagnosis = VALID_DIAGNOSES[randomIndex];
         if (titleElement) titleElement.textContent = "Wordle für ICD-10 - Frei";
     } else {
         const now = new Date();
         const dateSeed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
-        const dailyIndex = dateSeed % ICD10_LIST.length;
-        targetDiagnosis = ICD10_LIST[dailyIndex];
+        const dailyIndex = dateSeed % VALID_DIAGNOSES.length;
+        targetDiagnosis = VALID_DIAGNOSES[dailyIndex];
         if (titleElement) titleElement.textContent = "Wordle für ICD-10";
     }
 
@@ -853,7 +835,6 @@ function initGame() {
 // 5. Autocomplete-Logik
 if (searchInput) {
     searchInput.addEventListener('input', () => {
-        console.log("Eingabe erkannt:", searchInput.value);
         if (isGameOver) return;
 
         const query = searchInput.value.toLowerCase().trim();
@@ -921,7 +902,7 @@ function revealNextClue() {
     const slot = document.getElementById(`clue-${currentStep}`);
 
     if (slot) {
-        slot.textContent = (clues && clues[currentStep]) ? clues[currentStep] : "Keine Falldaten fuer: " + targetDiagnosis;
+        slot.textContent = (clues && clues[currentStep]) ? clues[currentStep] : "Keine Falldaten für: " + targetDiagnosis;
         slot.classList.remove('locked');
         slot.classList.add('revealed');
     }
@@ -933,12 +914,10 @@ function finishGame(win) {
     alertBox.classList.remove('hidden');
     if (overlay) overlay.classList.remove('hidden');
 
-    // Grund-Text festlegen
     let message = win
         ? `<h2>Richtig gelöst! 🎉</h2><p>Lösung: <strong>${targetDiagnosis}</strong></p>`
         : `<h2>Schade!</h2><p>Die Lösung war: <strong>${targetDiagnosis}</strong></p>`;
 
-    // Falls wir im freien Modus sind, fügen wir den "Nochmal spielen"-Button hinzu
     if (isFreePlayMode) {
         message += `<button id="restart-game-btn" class="primary-btn" style="margin-top: 20px;">Nächstes freies Spiel</button>`;
     }
@@ -946,16 +925,14 @@ function finishGame(win) {
     alertBox.innerHTML = message;
     alertBox.style.borderColor = win ? "#538d4e" : "#ba3a3a";
 
-    // Event-Listener für den neuen Button (nur wenn er existiert)
     const restartBtn = document.getElementById('restart-game-btn');
     if (restartBtn) {
         restartBtn.addEventListener('click', () => {
-            initGame(); // Startet sofort eine neue Runde
+            initGame();
         });
     }
 }
 
-// Hilfsfunktionen
 function revealAllClues() {
     const cleanTarget = targetDiagnosis.trim();
     const dbKey = Object.keys(CLUES_DATABASE).find(key => key.trim() === cleanTarget);
