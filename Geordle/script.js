@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+const manualOffset = 1;
 let targetWords = [];
 let targetWord = "";
 let WORD_LENGTH = 5;
@@ -42,7 +43,7 @@ async function initGame() {
 
         const now = new Date();
         const dateSeed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
-        targetWord = paddedTargetWords[dateSeed % paddedTargetWords.length];
+        targetWord = paddedTargetWords[(dateSeed + manualOffset) % paddedTargetWords.length];
 
         createGrid();
         startInteraction();

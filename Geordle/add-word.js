@@ -18,7 +18,7 @@ const suggestionsRef = ref(db, 'suggestions');
 
 const inputField = document.getElementById('new-word-input');
 const addBtn = document.getElementById('add-btn');
-const wordList = document.getElementById('word-list');
+const wordListElement = document.getElementById('word-list');
 const countDisplay = document.getElementById('word-count');
 
 addBtn.addEventListener('click', async () => {
@@ -29,7 +29,7 @@ addBtn.addEventListener('click', async () => {
     const snapshot = await get(duplicateQuery);
 
     if (snapshot.exists()) {
-        alert(`Das Wort "${word.toUpperCase()}" ist schon vorhanden!`);
+        alert("Wort bereits vorhanden!");
         inputField.value = "";
         return;
     }
@@ -39,22 +39,23 @@ addBtn.addEventListener('click', async () => {
 });
 
 onValue(suggestionsRef, (snapshot) => {
-    if (!wordList) return;
-    wordList.innerHTML = "";
+    if (!wordListElement) return;
+    wordListElement.innerHTML = "";
     const data = snapshot.val();
+
     if (data) {
         const entries = Object.values(data);
-        // Korrekte Anzeige von "Wörter"
-        countDisplay.textContent = `Vorhandene Wörter: ${entries.length}`;
+        // \u00F6 ist der Code fuer das kleine ö
+        countDisplay.textContent = `Vorhandene Namen: ${entries.length}`;
 
         entries.sort((a, b) => a.text.localeCompare(b.text)).forEach(item => {
             const li = document.createElement('li');
             li.classList.add('word-item');
-            // Sauberer Bullet Point
-            li.innerHTML = `<span class="bullet">•</span> ${item.text.toUpperCase()}`;
-            wordList.appendChild(li);
+            // \u2022 ist der Code fuer den dicken Bullet Point
+            li.innerHTML = `<span class="bullet">\u2022</span> ${item.text.toUpperCase()}`;
+            wordListElement.appendChild(li);
         });
     } else {
-        countDisplay.textContent = "Vorhandene Wörter: 0";
+        countDisplay.textContent = "Vorhandene Namen: 0";
     }
 });
