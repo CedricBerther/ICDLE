@@ -431,7 +431,7 @@ const CLUES_DATABASE = {
     ],
     "F43.0 Akute Belastungsreaktion": [
         "Unmittelbar nach einem schweren Unfall wirkt ein 30-jähriger Beteiligter wie betäubt und starrt ins Leere.",
-        "Kurz darauf wechselt der Zustand in eine mussive Phase von Unruhe, Zittern und Herzrasen.",
+        "Kurz darauf wechselt der Zustand in eine massive Phase von Unruhe, Zittern und Herzrasen.",
         "Die Symptome treten innerhalb von Minuten nach dem traumatischen Ereignis auf.",
         "Der Zustand klingt normalerweise innerhalb von Stunden oder spätestens nach zwei bis drei Tagen wieder ab.",
         "Es handelt sich um eine Reaktion auf ein aussergewöhnlich belastendes Ereignis bei einer sonst gesunden Person."
