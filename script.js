@@ -792,10 +792,14 @@ const overlay = document.getElementById('overlay');
 const titleElement = document.getElementById('game-title');
 
 // 4. Start-Logik
-document.getElementById('free-play-btn').addEventListener('click', () => {
-    isFreePlayMode = true;
-    initGame();
-});
+// Hilfsfunktion: Erzeugt eine Zufallszahl basierend auf einem Seed (Datum)
+// Dies stellt sicher, dass die Mischung "zufällig" wirkt, aber für alle gleich ist.
+function seededRandom(seed) {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+}
 
 function initGame() {
     console.log("Initialisiere Spiel...");
@@ -803,22 +807,28 @@ function initGame() {
     isGameOver = false;
     guessedDiagnoses = [];
 
-    // Modus-Wahl
     if (isFreePlayMode) {
+        // Echt zufällig im freien Modus
         const randomIndex = Math.floor(Math.random() * VALID_DIAGNOSES.length);
         targetDiagnosis = VALID_DIAGNOSES[randomIndex];
         if (titleElement) titleElement.textContent = "Wordle für ICD-10 - Frei";
     } else {
+        // Seeded Random für das tägliche Wort
         const now = new Date();
         const dateSeed = now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
-        const dailyIndex = dateSeed % VALID_DIAGNOSES.length;
+        
+        // Wir nutzen den dateSeed, um eine gemischte Zahl zu generieren
+        const mix = seededRandom(dateSeed);
+        const dailyIndex = Math.floor(mix * VALID_DIAGNOSES.length);
+        
         targetDiagnosis = VALID_DIAGNOSES[dailyIndex];
         if (titleElement) titleElement.textContent = "Wordle für ICD-10";
     }
 
     // UI Reset
     resetClueSlots();
-    document.getElementById('guess-history').innerHTML = '';
+    const history = document.getElementById('guess-history');
+    if (history) history.innerHTML = '';
 
     if (searchInput) {
         searchInput.disabled = false;
@@ -828,7 +838,6 @@ function initGame() {
     if (alertBox) alertBox.classList.add('hidden');
     if (overlay) overlay.classList.add('hidden');
 
-    // Den ersten Hinweis sofort aufdecken
     revealNextClue();
 }
 
