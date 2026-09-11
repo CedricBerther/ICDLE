@@ -790,6 +790,7 @@ const autocompleteList = document.getElementById('autocomplete-list');
 const alertBox = document.getElementById('alert-box');
 const overlay = document.getElementById('overlay');
 const titleElement = document.getElementById('game-title');
+const freePlayBtn = document.getElementById('free-play-btn');
 
 // 4. Start-Logik
 // Hilfsfunktion: Erzeugt eine Zufallszahl basierend auf einem Seed (Datum)
@@ -976,4 +977,11 @@ document.addEventListener('click', (e) => {
 });
 
 // Start
+if (freePlayBtn) {
+    freePlayBtn.addEventListener('click', () => {
+        isFreePlayMode = true;
+        initGame();
+    });
+}
+
 initGame();
